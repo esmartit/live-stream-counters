@@ -1,0 +1,20 @@
+spring.application.name: smartpoke-live-stream-counters
+server.port: 9000
+spring:
+  jmx:
+    enabled: false
+  cloud.stream:
+    kafka:
+      streams:
+        binder:
+          brokers: "${KAFKA_BROKER_HOST}"
+          configuration:
+            default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+            default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+            commit.interval.ms: 1000
+    bindings:
+      input:
+        destination: "smartpoke-device-presence"
+        group: "smartpoke.live.stream.counters"
+      output:
+        destination: "unique-devices-detected-count"
