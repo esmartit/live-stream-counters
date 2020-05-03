@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  live-stream-counters:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2020-05-03T18:13:16.500339193Z"
+    description: A Helm chart for Kubernetes
+    digest: ba10e6ddff9d8a54b37a9041a349d6a43054de95f4e93f0b8a23a2058afa9618
+    name: live-stream-counters
+    type: application
+    urls:
+    - https://esmartit.github.io/live-stream-counters/docs/live-stream-counters-1.0.0.tgz
+    version: 1.0.0
+generated: "2020-05-03T18:13:16.49921409Z"
