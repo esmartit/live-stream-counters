@@ -34,7 +34,7 @@ securityContext: {}
 
 app:
   kafka:
-    host: "test-kafka.default.svc.cluster.local:9092"
+    host: "event-bus:9092"
 
 service:
   type: ClusterIP
