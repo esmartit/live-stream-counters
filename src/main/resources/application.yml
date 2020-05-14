@@ -1,5 +1,5 @@
 spring.application.name: smartpoke-live-stream-counters
-server.port: 9000
+server.port: "${SERVER_PORT:9000}"
 spring:
   jmx:
     enabled: false
@@ -17,4 +17,9 @@ spring:
         destination: "smartpoke-device-presence"
         group: "smartpoke.live.stream.counters"
       output:
-        destination: "unique-devices-detected-count"
+        destination: "smartpoke-unique-devices-detected-count"
+      presence-input:
+        destination: "smartpoke-device-presence"
+        group: "smartpoke.live.stream.counters.presence"
+      presence-output:
+        destination: "smartpoke-hourly-presence-count"
