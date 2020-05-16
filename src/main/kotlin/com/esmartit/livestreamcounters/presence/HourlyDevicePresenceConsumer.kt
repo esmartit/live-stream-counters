@@ -5,14 +5,19 @@ import com.esmartit.livestreamcounters.presence.Position.IN
 import com.esmartit.livestreamcounters.presence.Position.LIMIT
 import com.esmartit.livestreamcounters.presence.Position.NO_POSITION
 import com.esmartit.livestreamcounters.presence.Position.OUT
+import com.esmartit.livestreamcounters.presence.PresenceStreamsProcessor.Companion.PRESENCE_INPUT
+import com.esmartit.livestreamcounters.presence.PresenceStreamsProcessor.Companion.SENSOR_SETTINGS_INPUT
 import com.esmartit.livestreamcounters.serde.JsonSerde
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.common.serialization.Serdes
 import org.apache.kafka.common.utils.Bytes
+import org.apache.kafka.streams.kstream.GlobalKTable
 import org.apache.kafka.streams.kstream.Grouped
 import org.apache.kafka.streams.kstream.KStream
+import org.apache.kafka.streams.kstream.KeyValueMapper
 import org.apache.kafka.streams.kstream.Materialized
 import org.apache.kafka.streams.kstream.TransformerSupplier
+import org.apache.kafka.streams.kstream.ValueJoiner
 import org.apache.kafka.streams.state.KeyValueStore
 import org.springframework.cloud.stream.annotation.EnableBinding
 import org.springframework.cloud.stream.annotation.Input
@@ -30,7 +35,7 @@ internal const val HOURLY_DEVICE_PRESENCE_WINDOW_LENGTH = 7_200L
 @EnableBinding(PresenceStreamsProcessor::class)
 class HourlyDevicePresenceConsumer(private val objectMapper: ObjectMapper) {
 
-    @StreamListener(PresenceStreamsProcessor.PRESENCE_INPUT)
+    @StreamListener
     @SendTo(PresenceStreamsProcessor.PRESENCE_OUTPUT)
     @KafkaStreamsStateStore(
         type = KafkaStreamsStateStoreProperties.StoreType.WINDOW,
@@ -39,27 +44,33 @@ class HourlyDevicePresenceConsumer(private val objectMapper: ObjectMapper) {
         name = HOURLY_DEVICE_PRESENCE_STORE,
         valueSerde = "com.esmartit.livestreamcounters.serde.PositionSerde"
     )
-    fun process(input: KStream<String, DeviceDetectedEvent>): KStream<String, HourlyDevicePresenceStat> {
+    fun process(
+        @Input(PRESENCE_INPUT) input: KStream<String, DeviceDetectedEvent>,
+        @Input(SENSOR_SETTINGS_INPUT) sensorSettings: GlobalKTable<String, SensorSetting>
+    ): KStream<String, HourlyDevicePresenceStat> {
 
-        return input.mapValues { _, deviceDetectedEvent -> hourlyDevicePresence(deviceDetectedEvent) }
+        return input
+            .leftJoin(sensorSettings,
+                KeyValueMapper<String, DeviceDetectedEvent, String> { _, event -> event.sensorName },
+                ValueJoiner<DeviceDetectedEvent, SensorSetting, HourlyDevicePresence> { event, setting ->
+                    hourlyDevicePresence(event, setting)
+                })
             .transform(hourlyDevicePresenceTransformer(), HOURLY_DEVICE_PRESENCE_STORE)
             .filterNot { _, hourlyDeviceDeltaPresence -> noChangesIn(hourlyDeviceDeltaPresence) }
             .groupByKey(Grouped.with(Serdes.String(), JsonSerde(objectMapper, HourlyDeviceDeltaPresence::class)))
             .aggregate({ HourlyDevicePresenceStat() }, ::calculateStats, statsKeyStore())
             .toStream()
-            .peek { key, value -> println(value) }
+            .peek { _, value -> println(value) }
     }
 
-    private fun hourlyDevicePresence(deviceDetectedEvent: DeviceDetectedEvent): HourlyDevicePresence {
+    private fun hourlyDevicePresence(
+        deviceDetectedEvent: DeviceDetectedEvent,
+        setting: SensorSetting?
+    ): HourlyDevicePresence {
         val seenTime = Instant.parse(deviceDetectedEvent.device.seenTime).truncatedTo(ChronoUnit.HOURS)
-        val position = presence(deviceDetectedEvent.device.rssi)
+        val sensorSetting = setting ?: SensorSetting("default")
+        val position = sensorSetting.presence(deviceDetectedEvent.device.rssi)
         return HourlyDevicePresence(deviceDetectedEvent.device.clientMac, position, seenTime.toString())
-    }
-
-    private fun presence(power: Int) = when {
-        power >= -35 -> IN
-        power >= -45 -> LIMIT
-        else -> OUT
     }
 
     private fun noChangesIn(hourlyDeviceDeltaPresence: HourlyDeviceDeltaPresence) =
@@ -93,6 +104,23 @@ class HourlyDevicePresenceConsumer(private val objectMapper: ObjectMapper) {
             .withValueSerde(JsonSerde(objectMapper, HourlyDevicePresenceStat::class))
 }
 
+data class SensorSetting(
+    val id: String,
+    val spot: String = "default",
+    val sensorId: String = "default",
+    val location: String = "default",
+    val inEdge: Int = -35,
+    val limitEdge: Int = -45,
+    val outEdge: Int = -300
+) {
+    fun presence(power: Int) = when {
+        power >= inEdge -> IN
+        power >= limitEdge -> LIMIT
+        power >= outEdge -> OUT
+        else -> NO_POSITION
+    }
+}
+
 interface PresenceStreamsProcessor {
 
     @Input(PRESENCE_INPUT)
@@ -101,8 +129,12 @@ interface PresenceStreamsProcessor {
     @Output(PRESENCE_OUTPUT)
     fun output(): KStream<*, *>
 
+    @Input(SENSOR_SETTINGS_INPUT)
+    fun inputTable(): GlobalKTable<*, *>
+
     companion object {
         const val PRESENCE_INPUT = "presence-input"
         const val PRESENCE_OUTPUT = "presence-output"
+        const val SENSOR_SETTINGS_INPUT = "sensor-settings-input"
     }
 }
