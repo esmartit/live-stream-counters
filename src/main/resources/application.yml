@@ -23,3 +23,6 @@ spring:
         group: "smartpoke.live.stream.counters.presence"
       presence-output:
         destination: "smartpoke-hourly-presence-count"
+      sensor-settings-input:
+        destination: "smartpoke-sensor-settings"
+        consumer.materializedAs: sensor-settings-store
