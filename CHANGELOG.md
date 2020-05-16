@@ -1,5 +1,13 @@
 # Semantic Versioning Changelog
 
+# [1.1.0](https://github.com/esmartit/live-stream-counters/compare/v1.0.1...v1.1.0) (2020-05-16)
+
+
+### Features
+
+* adding sensor settings endpoint ([#4](https://github.com/esmartit/live-stream-counters/issues/4)) ([ce2b596](https://github.com/esmartit/live-stream-counters/commit/ce2b596c2788b8b3279f191ad35a20da35485e97))
+* fixing test ([#5](https://github.com/esmartit/live-stream-counters/issues/5)) ([e543cfa](https://github.com/esmartit/live-stream-counters/commit/e543cfa8e87fdb22a4d8d76fc3423598ce669a63))
+
 ## [1.0.1](https://github.com/esmartit/live-stream-counters/compare/v1.0.0...v1.0.1) (2020-05-14)
 
 
