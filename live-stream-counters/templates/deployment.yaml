@@ -37,13 +37,13 @@ spec:
           livenessProbe:
             httpGet:
               path: /actuator/health
-              port: http
+              port: 9000
             initialDelaySeconds: 180
             periodSeconds: 20
           readinessProbe:
             httpGet:
               path: /actuator/health
-              port: http
+              port: 9000
             initialDelaySeconds: 180
             periodSeconds: 10
           resources:
