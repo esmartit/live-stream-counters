@@ -38,14 +38,14 @@ spec:
             httpGet:
               path: /actuator/health
               port: http
-            initialDelaySeconds: 120
-{{/*            periodSeconds: 20*/}}
+            initialDelaySeconds: 180
+            periodSeconds: 20
           readinessProbe:
             httpGet:
               path: /actuator/health
               port: http
-            initialDelaySeconds: 120
-{{/*            periodSeconds: 10*/}}
+            initialDelaySeconds: 180
+            periodSeconds: 10
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
