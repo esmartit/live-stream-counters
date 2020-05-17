@@ -37,15 +37,15 @@ spec:
           livenessProbe:
             httpGet:
               path: /actuator/health
-              port: 9000
-            initialDelaySeconds: 180
-            periodSeconds: 20
+              port: http
+{{/*            initialDelaySeconds: 180*/}}
+{{/*            periodSeconds: 20*/}}
           readinessProbe:
             httpGet:
               path: /actuator/health
-              port: 9000
-            initialDelaySeconds: 180
-            periodSeconds: 10
+              port: http
+{{/*            initialDelaySeconds: 180*/}}
+{{/*            periodSeconds: 10*/}}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
