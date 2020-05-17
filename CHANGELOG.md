@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+# [1.3.0](https://github.com/esmartit/live-stream-counters/compare/v1.2.2...v1.3.0) (2020-05-17)
+
+
+### Features
+
+* daily unique counter ([7a0f418](https://github.com/esmartit/live-stream-counters/commit/7a0f4180f33dccaa81496cf24a1168a91f4c9e75))
+
 ## [1.2.2](https://github.com/esmartit/live-stream-counters/compare/v1.2.1...v1.2.2) (2020-05-17)
 
 
