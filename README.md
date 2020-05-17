@@ -15,3 +15,5 @@ kafka-topics.sh --create --bootstrap-server event-bus-kafka:9092 --replication-f
 
 kafka-topics.sh --delete --bootstrap-server event-bus-kafka:9092 --topic test
 kafka-topics.sh --describe --bootstrap-server event-bus-kafka:9092 --topic smartpoke-device-presence
+
+release 2
