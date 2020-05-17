@@ -1,5 +1,7 @@
-package com.esmartit.livestreamcounters.presence
+package com.esmartit.livestreamcounters.counters.presence.hourly
 
+
+import com.esmartit.livestreamcounters.sensor.Position
 import org.apache.kafka.streams.KeyValue
 import org.apache.kafka.streams.kstream.Transformer
 import org.apache.kafka.streams.processor.ProcessorContext

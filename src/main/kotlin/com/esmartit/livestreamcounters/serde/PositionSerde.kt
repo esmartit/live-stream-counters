@@ -1,6 +1,6 @@
 package com.esmartit.livestreamcounters.serde
 
-import com.esmartit.livestreamcounters.presence.Position
+import com.esmartit.livestreamcounters.sensor.Position
 import org.apache.kafka.common.serialization.Deserializer
 import org.apache.kafka.common.serialization.Serde
 import org.apache.kafka.common.serialization.Serializer
