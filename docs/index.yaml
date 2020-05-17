@@ -2,8 +2,19 @@ apiVersion: v1
 entries:
   live-stream-counters:
   - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2020-05-17T18:36:10.916091498Z"
+    description: A Helm chart for Kubernetes
+    digest: 73273b376752ae9c8e9a2e3f79adae063fa780be143084011e2296e7f61e90cf
+    icon: https://esmartit.github.io/seen-devices-data-store/docs/smartpoke.png
+    name: live-stream-counters
+    type: application
+    urls:
+    - https://esmartit.github.io/live-stream-counters/docs/live-stream-counters-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v2
     appVersion: 1.1.1
-    created: "2020-05-17T17:28:04.663051823Z"
+    created: "2020-05-17T18:36:10.915677771Z"
     description: A Helm chart for Kubernetes
     digest: 54125c702b8d054232534ada5eedd99000e504c641cc29184cd8c8430cacc2e5
     icon: https://esmartit.github.io/seen-devices-data-store/docs/smartpoke.png
@@ -14,7 +25,7 @@ entries:
     version: 1.1.1
   - apiVersion: v2
     appVersion: 1.1.0
-    created: "2020-05-17T17:28:04.662606947Z"
+    created: "2020-05-17T18:36:10.915267021Z"
     description: A Helm chart for Kubernetes
     digest: 04fc8d66eb031ad8d17a75e4c0d8f3982b148d7e10564e4afb052a3945fb21df
     icon: https://esmartit.github.io/seen-devices-data-store/docs/smartpoke.png
@@ -25,7 +36,7 @@ entries:
     version: 1.1.0
   - apiVersion: v2
     appVersion: 1.0.1
-    created: "2020-05-17T17:28:04.662043131Z"
+    created: "2020-05-17T18:36:10.914603525Z"
     description: A Helm chart for Kubernetes
     digest: 1e410a8b6156e42334545e22fbfcd90d91a3f2fe796beb1fe9387eeeef8a7cde
     icon: https://esmartit.github.io/seen-devices-data-store/docs/smartpoke.png
@@ -36,7 +47,7 @@ entries:
     version: 1.0.1
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-05-17T17:28:04.661408154Z"
+    created: "2020-05-17T18:36:10.914031472Z"
     description: A Helm chart for Kubernetes
     digest: ba10e6ddff9d8a54b37a9041a349d6a43054de95f4e93f0b8a23a2058afa9618
     name: live-stream-counters
@@ -44,4 +55,4 @@ entries:
     urls:
     - https://esmartit.github.io/live-stream-counters/docs/live-stream-counters-1.0.0.tgz
     version: 1.0.0
-generated: "2020-05-17T17:28:04.660517308Z"
+generated: "2020-05-17T18:36:10.913197486Z"
