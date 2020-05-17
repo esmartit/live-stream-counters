@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+## [1.3.1](https://github.com/esmartit/live-stream-counters/compare/v1.3.0...v1.3.1) (2020-05-17)
+
+
+### Bug Fixes
+
+* windows ([a16a0e3](https://github.com/esmartit/live-stream-counters/commit/a16a0e37459ce80870e25148c4121d80b5753ed4))
+
 # [1.3.0](https://github.com/esmartit/live-stream-counters/compare/v1.2.2...v1.3.0) (2020-05-17)
 
 
