@@ -1,0 +1,46 @@
+package com.esmartit.livestreamcounters.counters.unique.daily
+
+import com.esmartit.livestreamcounters.counters.unique.ShouldIncreaseCount
+import com.esmartit.livestreamcounters.events.DeviceDetectedEvent
+import org.apache.kafka.streams.KeyValue
+import org.apache.kafka.streams.kstream.Transformer
+import org.apache.kafka.streams.processor.ProcessorContext
+import org.apache.kafka.streams.state.WindowStore
+import java.time.Instant
+import java.time.temporal.ChronoUnit
+
+class DailyUniqueDevicesDetectedTransformer(private val windowStart: Long) :
+    Transformer<String, DeviceDetectedEvent, KeyValue<String, ShouldIncreaseCount>> {
+
+    private lateinit var stateStore: WindowStore<String, String>
+
+    override fun init(context: ProcessorContext) {
+        this.stateStore =
+            context.getStateStore(DAILY_UNIQUE_DEVICES_DETECTED_STORE) as WindowStore<String, String>
+    }
+
+    override fun transform(
+        key: String,
+        event: DeviceDetectedEvent
+    ): KeyValue<String, ShouldIncreaseCount> {
+        val time = Instant.parse(event.device.seenTime).truncatedTo(ChronoUnit.DAYS)
+        val timeAndMacAddress = with(event.device) { "$time:$clientMac" }
+        val nowIsh = Instant.now()
+        val thenIsh = nowIsh.minusSeconds(windowStart)
+        val positionWindow = this.stateStore.fetch(timeAndMacAddress, thenIsh, nowIsh)
+        val currentPosition = positionWindow.asSequence().lastOrNull()?.value
+        return if (currentPosition == null) {
+            this.stateStore.put(timeAndMacAddress, "1")
+            KeyValue(DAILY_UNIQUE_DEVICES_DETECTED_COUNT,
+                ShouldIncreaseCount(true)
+            )
+        } else {
+            KeyValue(DAILY_UNIQUE_DEVICES_DETECTED_COUNT,
+                ShouldIncreaseCount(false)
+            )
+        }
+    }
+
+    override fun close() {
+    }
+}
