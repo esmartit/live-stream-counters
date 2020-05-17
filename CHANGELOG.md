@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+## [1.2.2](https://github.com/esmartit/live-stream-counters/compare/v1.2.1...v1.2.2) (2020-05-17)
+
+
+### Bug Fixes
+
+* readiness ([4061c69](https://github.com/esmartit/live-stream-counters/commit/4061c69174f55662656dfbb8cb3abfe6f651ed06))
+
 ## [1.2.1](https://github.com/esmartit/live-stream-counters/compare/v1.2.0...v1.2.1) (2020-05-17)
 
 
