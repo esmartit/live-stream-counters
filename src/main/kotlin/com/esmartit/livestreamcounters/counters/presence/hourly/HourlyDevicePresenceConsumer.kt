@@ -24,7 +24,7 @@ import java.time.Instant
 import java.time.temporal.ChronoUnit
 
 internal const val HOURLY_DEVICE_PRESENCE_STORE = "hourly-device-presence-store"
-internal const val HOURLY_DEVICE_PRESENCE_WINDOW_LENGTH = 7_200L
+internal const val HOURLY_DEVICE_PRESENCE_WINDOW_LENGTH = 3_600L
 
 @EnableBinding(PresenceStreamsProcessor::class)
 class HourlyDevicePresenceConsumer(private val objectMapper: ObjectMapper) {
