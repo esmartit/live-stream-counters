@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+## [1.1.1](https://github.com/esmartit/live-stream-counters/compare/v1.1.0...v1.1.1) (2020-05-17)
+
+
+### Bug Fixes
+
+* fixing k8s delay liveness and readiness ([#6](https://github.com/esmartit/live-stream-counters/issues/6)) ([8f9dcfb](https://github.com/esmartit/live-stream-counters/commit/8f9dcfba75546453ffc356d157fa3c1bc22c559c))
+
 # [1.1.0](https://github.com/esmartit/live-stream-counters/compare/v1.0.1...v1.1.0) (2020-05-16)
 
 
