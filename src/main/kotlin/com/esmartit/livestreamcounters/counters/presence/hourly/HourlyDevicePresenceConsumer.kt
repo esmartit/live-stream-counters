@@ -11,7 +11,6 @@ import org.apache.kafka.streams.kstream.Grouped
 import org.apache.kafka.streams.kstream.KStream
 import org.apache.kafka.streams.kstream.Materialized
 import org.apache.kafka.streams.kstream.TransformerSupplier
-import org.apache.kafka.streams.kstream.ValueMapper
 import org.apache.kafka.streams.state.KeyValueStore
 import org.springframework.cloud.stream.annotation.EnableBinding
 import org.springframework.cloud.stream.annotation.Input
@@ -20,8 +19,6 @@ import org.springframework.cloud.stream.annotation.StreamListener
 import org.springframework.cloud.stream.binder.kafka.streams.annotations.KafkaStreamsStateStore
 import org.springframework.cloud.stream.binder.kafka.streams.properties.KafkaStreamsStateStoreProperties
 import org.springframework.messaging.handler.annotation.SendTo
-import java.time.Instant
-import java.time.temporal.ChronoUnit
 
 internal const val HOURLY_DEVICE_PRESENCE_STORE = "hourly-device-presence-store"
 internal const val HOURLY_DEVICE_PRESENCE_WINDOW_LENGTH = 3_600L
@@ -41,7 +38,6 @@ class HourlyDevicePresenceConsumer(private val objectMapper: ObjectMapper) {
     fun process(input: KStream<String, DeviceWithPresenceEvent>): KStream<String, HourlyDevicePresenceStat> {
 
         return input
-            .mapValues(ValueMapper<DeviceWithPresenceEvent, HourlyDevicePresence> { hourlyDevicePresence(it) })
             .transform(hourlyDevicePresenceTransformer(), HOURLY_DEVICE_PRESENCE_STORE)
             .filter { _, value -> value.isThereAChange() }
             .groupByKey(Grouped.with(Serdes.String(), JsonSerde(objectMapper, HourlyDeviceDeltaPresence::class)))
@@ -52,15 +48,6 @@ class HourlyDevicePresenceConsumer(private val objectMapper: ObjectMapper) {
             )
             .toStream()
             .peek { key, value -> println("$key-$value") }
-    }
-
-    private fun hourlyDevicePresence(
-        withPosition: DeviceWithPresenceEvent
-    ): HourlyDevicePresence {
-        val deviceDetectedEvent = withPosition.deviceDetectedEvent
-        val seenTime = Instant.parse(deviceDetectedEvent.device.seenTime).truncatedTo(ChronoUnit.HOURS)
-        val position = withPosition.position
-        return HourlyDevicePresence(deviceDetectedEvent.device.clientMac, position, seenTime.toString())
     }
 
     private fun hourlyDevicePresenceTransformer() =

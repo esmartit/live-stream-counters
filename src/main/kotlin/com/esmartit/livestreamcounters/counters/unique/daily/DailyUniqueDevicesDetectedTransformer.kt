@@ -7,6 +7,8 @@ import org.apache.kafka.streams.kstream.Transformer
 import org.apache.kafka.streams.processor.ProcessorContext
 import org.apache.kafka.streams.state.WindowStore
 import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneOffset
 import java.time.temporal.ChronoUnit
 
 class DailyUniqueDevicesDetectedTransformer(private val windowStart: Long) :
@@ -26,18 +28,13 @@ class DailyUniqueDevicesDetectedTransformer(private val windowStart: Long) :
         val time = Instant.parse(event.device.seenTime).truncatedTo(ChronoUnit.DAYS)
         val timeAndMacAddress = with(event.device) { "$time:$clientMac" }
         val nowIsh = Instant.now()
-        val thenIsh = nowIsh.minusSeconds(windowStart)
-        val positionWindow = this.stateStore.fetch(timeAndMacAddress, thenIsh, nowIsh)
+        val positionWindow = this.stateStore.fetch(timeAndMacAddress, time, nowIsh)
         val currentPosition = positionWindow.asSequence().lastOrNull()?.value
         return if (currentPosition == null) {
             this.stateStore.put(timeAndMacAddress, "1")
-            KeyValue(DAILY_UNIQUE_DEVICES_DETECTED_COUNT,
-                ShouldIncreaseCount(true)
-            )
+            KeyValue(DAILY_UNIQUE_DEVICES_DETECTED_COUNT, ShouldIncreaseCount(true))
         } else {
-            KeyValue(DAILY_UNIQUE_DEVICES_DETECTED_COUNT,
-                ShouldIncreaseCount(false)
-            )
+            KeyValue(DAILY_UNIQUE_DEVICES_DETECTED_COUNT, ShouldIncreaseCount(false))
         }
     }
 

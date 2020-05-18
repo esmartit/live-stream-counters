@@ -1,7 +1,7 @@
 package com.esmartit.livestreamcounters.counters.unique.total
 
-import com.esmartit.livestreamcounters.events.DeviceDetectedEvent
 import com.esmartit.livestreamcounters.counters.unique.ShouldIncreaseCount
+import com.esmartit.livestreamcounters.events.DeviceDetectedEvent
 import org.apache.kafka.streams.KeyValue
 import org.apache.kafka.streams.kstream.Transformer
 import org.apache.kafka.streams.processor.ProcessorContext
@@ -20,15 +20,9 @@ class TotalUniqueDevicesDetectedTransformer :
         val storedRecord = this.stateStore[key]
         if (storedRecord == null) {
             this.stateStore.put(key, "1")
-            return KeyValue(
-                UNIQUE_DEVICES_DETECTED_COUNT,
-                ShouldIncreaseCount(true)
-            )
+            return KeyValue(UNIQUE_DEVICES_DETECTED_COUNT, ShouldIncreaseCount(true))
         }
-        return KeyValue(
-            UNIQUE_DEVICES_DETECTED_COUNT,
-            ShouldIncreaseCount(false)
-        )
+        return KeyValue(UNIQUE_DEVICES_DETECTED_COUNT, ShouldIncreaseCount(false))
     }
 
     override fun close() {

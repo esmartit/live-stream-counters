@@ -1,15 +1,17 @@
 package com.esmartit.livestreamcounters.counters.presence.hourly
 
 
+import com.esmartit.livestreamcounters.events.DeviceWithPresenceEvent
 import com.esmartit.livestreamcounters.sensor.Position
 import org.apache.kafka.streams.KeyValue
 import org.apache.kafka.streams.kstream.Transformer
 import org.apache.kafka.streams.processor.ProcessorContext
 import org.apache.kafka.streams.state.WindowStore
 import java.time.Instant
+import java.time.temporal.ChronoUnit
 
 class HourlyDevicePresenceTransformer(private val windowStart: Long) :
-    Transformer<String, HourlyDevicePresence, KeyValue<String, HourlyDeviceDeltaPresence>> {
+    Transformer<String, DeviceWithPresenceEvent, KeyValue<String, HourlyDeviceDeltaPresence>> {
 
     private lateinit var stateStore: WindowStore<String, Position>
 
@@ -19,12 +21,16 @@ class HourlyDevicePresenceTransformer(private val windowStart: Long) :
 
     override fun transform(
         key: String,
-        hourlyDevicePresence: HourlyDevicePresence
+        withPosition: DeviceWithPresenceEvent
     ): KeyValue<String, HourlyDeviceDeltaPresence> {
+        val deviceDetectedEvent = withPosition.deviceDetectedEvent
+        val seenTime = Instant.parse(deviceDetectedEvent.device.seenTime).truncatedTo(ChronoUnit.HOURS)
+        val position = withPosition.position
+        val macAddress = deviceDetectedEvent.device.clientMac
+        val hourlyDevicePresence = HourlyDevicePresence(macAddress, position, seenTime.toString())
         val timeAndMacAddress = with(hourlyDevicePresence) { "$time:$macAddress" }
         val nowIsh = Instant.now()
-        val thenIsh = nowIsh.minusSeconds(windowStart)
-        val positionWindow = this.stateStore.fetch(timeAndMacAddress, thenIsh, nowIsh)
+        val positionWindow = this.stateStore.fetch(timeAndMacAddress, seenTime, nowIsh)
         val currentPosition = positionWindow.asSequence().lastOrNull()?.value
         if (currentPosition == null) {
             return streamNewPosition(timeAndMacAddress, hourlyDevicePresence)

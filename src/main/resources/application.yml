@@ -1,4 +1,4 @@
-spring.application.name: smartpoke-live-stream
+spring.application.name: smartpoke-live-stream-counters
 server.port: "${SERVER_PORT:9000}"
 spring:
   jmx:
@@ -15,7 +15,6 @@ spring:
     bindings:
       input:
         destination: "smartpoke-device-presence"
-        group: "smartpoke.live.stream.counters"
       output:
         destination: "smartpoke-device-position"
       sensor-settings-input:
@@ -23,16 +22,13 @@ spring:
         consumer.materializedAs: sensor-settings-store
       hourly-presence-count-input:
         destination: "smartpoke-device-position"
-        group: "smartpoke.live.stream.counters.hourly.presence"
       hourly-presence-count-output:
         destination: "smartpoke-hourly-presence-count"
       unique-devices-detected-count-input:
         destination: "smartpoke-device-position"
-        group: "smartpoke.live.stream.counters.unique.devices"
       unique-devices-detected-count-output:
         destination: "smartpoke-unique-devices-detected-count"
       daily-unique-devices-detected-count-input:
         destination: "smartpoke-device-position"
-        group: "smartpoke.live.stream.counters.daily.unique.devices"
       daily-unique-devices-detected-count-output:
           destination: "smartpoke-daily-unique-devices-detected-count"
