@@ -23,15 +23,19 @@ class HourlyDevicePresenceTransformer(private val windowStart: Long) :
         key: String,
         withPosition: DeviceWithPresenceEvent
     ): KeyValue<String, HourlyDeviceDeltaPresence> {
+
         val deviceDetectedEvent = withPosition.deviceDetectedEvent
-        val seenTime = Instant.parse(deviceDetectedEvent.device.seenTime).truncatedTo(ChronoUnit.HOURS)
         val position = withPosition.position
         val macAddress = deviceDetectedEvent.device.clientMac
+
+        val seenTime = Instant.parse(deviceDetectedEvent.device.seenTime).truncatedTo(ChronoUnit.HOURS)
+
         val hourlyDevicePresence = HourlyDevicePresence(macAddress, position, seenTime.toString())
-        val timeAndMacAddress = with(hourlyDevicePresence) { "$time:$macAddress" }
+        val timeAndMacAddress = "$seenTime:$macAddress"
         val nowIsh = Instant.now()
         val positionWindow = this.stateStore.fetch(timeAndMacAddress, seenTime, nowIsh)
         val currentPosition = positionWindow.asSequence().lastOrNull()?.value
+
         if (currentPosition == null) {
             return streamNewPosition(timeAndMacAddress, hourlyDevicePresence)
         } else if (hourlyDevicePresence.position.value > currentPosition.value) {

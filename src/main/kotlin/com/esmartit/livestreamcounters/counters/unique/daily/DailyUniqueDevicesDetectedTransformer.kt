@@ -32,9 +32,9 @@ class DailyUniqueDevicesDetectedTransformer(private val windowStart: Long) :
         val currentPosition = positionWindow.asSequence().lastOrNull()?.value
         return if (currentPosition == null) {
             this.stateStore.put(timeAndMacAddress, "1")
-            KeyValue(DAILY_UNIQUE_DEVICES_DETECTED_COUNT, ShouldIncreaseCount(true))
+            KeyValue(time.toString(), ShouldIncreaseCount(true))
         } else {
-            KeyValue(DAILY_UNIQUE_DEVICES_DETECTED_COUNT, ShouldIncreaseCount(false))
+            KeyValue(time.toString(), ShouldIncreaseCount(false))
         }
     }
 
