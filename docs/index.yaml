@@ -2,8 +2,19 @@ apiVersion: v1
 entries:
   live-stream-counters:
   - apiVersion: v2
+    appVersion: 1.4.0
+    created: "2020-05-20T20:12:41.02202281Z"
+    description: A Helm chart for Kubernetes
+    digest: be3936567bf4ede827c4c05d47c068bc7fd2e6eabf476e7aab2acb63d1091db5
+    icon: https://esmartit.github.io/seen-devices-data-store/docs/smartpoke.png
+    name: live-stream-counters
+    type: application
+    urls:
+    - https://esmartit.github.io/live-stream-counters/docs/live-stream-counters-1.4.0.tgz
+    version: 1.4.0
+  - apiVersion: v2
     appVersion: 1.3.5
-    created: "2020-05-20T08:13:33.222438349Z"
+    created: "2020-05-20T20:12:41.0212048Z"
     description: A Helm chart for Kubernetes
     digest: c93f4da1a67420c75c74a969b7778d88a25d537862baec482cc15afa8e7a7379
     icon: https://esmartit.github.io/seen-devices-data-store/docs/smartpoke.png
@@ -14,7 +25,7 @@ entries:
     version: 1.3.5
   - apiVersion: v2
     appVersion: 1.3.4
-    created: "2020-05-20T08:13:33.221915724Z"
+    created: "2020-05-20T20:12:41.020319998Z"
     description: A Helm chart for Kubernetes
     digest: 320c7d2543de43820d77901e770e45ab0f4baf517ea0824428432ceb498a6bf7
     icon: https://esmartit.github.io/seen-devices-data-store/docs/smartpoke.png
@@ -25,7 +36,7 @@ entries:
     version: 1.3.4
   - apiVersion: v2
     appVersion: 1.3.3
-    created: "2020-05-20T08:13:33.221385016Z"
+    created: "2020-05-20T20:12:41.016809137Z"
     description: A Helm chart for Kubernetes
     digest: 608a2645c75530fba2603ec255b842631e991c881153be5d0de565ed9e821556
     icon: https://esmartit.github.io/seen-devices-data-store/docs/smartpoke.png
@@ -36,7 +47,7 @@ entries:
     version: 1.3.3
   - apiVersion: v2
     appVersion: 1.3.2
-    created: "2020-05-20T08:13:33.220721215Z"
+    created: "2020-05-20T20:12:41.015334983Z"
     description: A Helm chart for Kubernetes
     digest: 28f559beeffb4c4d7693e2878934c5db79fd4adbea785c080b98f9119ea67231
     icon: https://esmartit.github.io/seen-devices-data-store/docs/smartpoke.png
@@ -47,7 +58,7 @@ entries:
     version: 1.3.2
   - apiVersion: v2
     appVersion: 1.3.1
-    created: "2020-05-20T08:13:33.218429469Z"
+    created: "2020-05-20T20:12:40.993916222Z"
     description: A Helm chart for Kubernetes
     digest: f1c6465cab5ec4f081540e121f38c8a618e82cb67c04b4dcba63fe5327c548dc
     icon: https://esmartit.github.io/seen-devices-data-store/docs/smartpoke.png
@@ -58,7 +69,7 @@ entries:
     version: 1.3.1
   - apiVersion: v2
     appVersion: 1.3.0
-    created: "2020-05-20T08:13:33.217407786Z"
+    created: "2020-05-20T20:12:40.9932532Z"
     description: A Helm chart for Kubernetes
     digest: 63ac12c7ebea4177253167d6f3bfd702292212685fdeaa5ff83bf2946effb3a0
     icon: https://esmartit.github.io/seen-devices-data-store/docs/smartpoke.png
@@ -69,7 +80,7 @@ entries:
     version: 1.3.0
   - apiVersion: v2
     appVersion: 1.2.2
-    created: "2020-05-20T08:13:33.216402001Z"
+    created: "2020-05-20T20:12:40.992606658Z"
     description: A Helm chart for Kubernetes
     digest: 5320e8a7faec9f1e14b849d5ba43b2353c0ba5f82fc61658907f8f5179c811c4
     icon: https://esmartit.github.io/seen-devices-data-store/docs/smartpoke.png
@@ -80,7 +91,7 @@ entries:
     version: 1.2.2
   - apiVersion: v2
     appVersion: 1.2.1
-    created: "2020-05-20T08:13:33.215217588Z"
+    created: "2020-05-20T20:12:40.991957327Z"
     description: A Helm chart for Kubernetes
     digest: 3cd53302c4cabf8c2fa66aa8d0ec771f00be8f8ad4f7b3b4e5a8771304b6ceb4
     icon: https://esmartit.github.io/seen-devices-data-store/docs/smartpoke.png
@@ -91,7 +102,7 @@ entries:
     version: 1.2.1
   - apiVersion: v2
     appVersion: 1.2.0
-    created: "2020-05-20T08:13:33.213760991Z"
+    created: "2020-05-20T20:12:40.991289407Z"
     description: A Helm chart for Kubernetes
     digest: 73273b376752ae9c8e9a2e3f79adae063fa780be143084011e2296e7f61e90cf
     icon: https://esmartit.github.io/seen-devices-data-store/docs/smartpoke.png
@@ -102,7 +113,7 @@ entries:
     version: 1.2.0
   - apiVersion: v2
     appVersion: 1.1.1
-    created: "2020-05-20T08:13:33.191647292Z"
+    created: "2020-05-20T20:12:40.990605802Z"
     description: A Helm chart for Kubernetes
     digest: 54125c702b8d054232534ada5eedd99000e504c641cc29184cd8c8430cacc2e5
     icon: https://esmartit.github.io/seen-devices-data-store/docs/smartpoke.png
@@ -113,7 +124,7 @@ entries:
     version: 1.1.1
   - apiVersion: v2
     appVersion: 1.1.0
-    created: "2020-05-20T08:13:33.167055611Z"
+    created: "2020-05-20T20:12:40.989950569Z"
     description: A Helm chart for Kubernetes
     digest: 04fc8d66eb031ad8d17a75e4c0d8f3982b148d7e10564e4afb052a3945fb21df
     icon: https://esmartit.github.io/seen-devices-data-store/docs/smartpoke.png
@@ -124,7 +135,7 @@ entries:
     version: 1.1.0
   - apiVersion: v2
     appVersion: 1.0.1
-    created: "2020-05-20T08:13:33.166399836Z"
+    created: "2020-05-20T20:12:40.989307173Z"
     description: A Helm chart for Kubernetes
     digest: 1e410a8b6156e42334545e22fbfcd90d91a3f2fe796beb1fe9387eeeef8a7cde
     icon: https://esmartit.github.io/seen-devices-data-store/docs/smartpoke.png
@@ -135,7 +146,7 @@ entries:
     version: 1.0.1
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-05-20T08:13:33.141625616Z"
+    created: "2020-05-20T20:12:40.98865169Z"
     description: A Helm chart for Kubernetes
     digest: ba10e6ddff9d8a54b37a9041a349d6a43054de95f4e93f0b8a23a2058afa9618
     name: live-stream-counters
@@ -143,4 +154,4 @@ entries:
     urls:
     - https://esmartit.github.io/live-stream-counters/docs/live-stream-counters-1.0.0.tgz
     version: 1.0.0
-generated: "2020-05-20T08:13:33.140821714Z"
+generated: "2020-05-20T20:12:40.987719054Z"
