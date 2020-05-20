@@ -21,7 +21,6 @@ import org.springframework.messaging.handler.annotation.SendTo
 import java.time.Instant
 
 internal const val DAILY_UNIQUE_DEVICES_DETECTED_STORE = "daily-unique-devices-detected-store"
-internal const val DAILY_UNIQUE_DEVICES_DETECTED_COUNT = "daily-unique-devices-detected-count"
 internal const val DAILY_UNIQUE_DEVICES_DETECTED_COUNT_STORE = "daily-unique-devices-detected-count-store"
 internal const val DAILY_UNIQUE_DEVICES_DETECTED_COUNT_WINDOW_LENGTH = 86_400L
 

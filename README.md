@@ -17,3 +17,8 @@ kafka-topics.sh --delete --bootstrap-server event-bus-kafka:9092 --topic test
 kafka-topics.sh --describe --bootstrap-server event-bus-kafka:9092 --topic smartpoke-device-presence
 
 release 2.0.0
+
+kafka-streams-application-reset.sh --application-id smartpoke-live-stream-counters --bootstrap-servers event-bus-kafka:9092 --input-topics smartpoke-device-presence,smartpoke-registered-users,smartpoke-session-activity,smartpoke-unique-devices-detected-count,smartpoke-hourly-presence-count,smartpoke-sensor-settings,smartpoke-device-position,smartpoke-daily-unique-devices-detected-count
+
+
+smartpoke-device-presence,smartpoke-registered-users,smartpoke-session-activity,smartpoke-unique-devices-detected-count,smartpoke-hourly-presence-count,smartpoke-sensor-settings,smartpoke-device-position,smartpoke-daily-unique-devices-detected-count
