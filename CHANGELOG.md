@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+## [1.3.5](https://github.com/esmartit/live-stream-counters/compare/v1.3.4...v1.3.5) (2020-05-20)
+
+
+### Bug Fixes
+
+* changing consumer groups and disabling liveness and readiness ([51023be](https://github.com/esmartit/live-stream-counters/commit/51023be667036801a6e8d398f5afe3b2568f5cef))
+
 ## [1.3.4](https://github.com/esmartit/live-stream-counters/compare/v1.3.3...v1.3.4) (2020-05-20)
 
 
