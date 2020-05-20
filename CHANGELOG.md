@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+## [1.3.4](https://github.com/esmartit/live-stream-counters/compare/v1.3.3...v1.3.4) (2020-05-20)
+
+
+### Bug Fixes
+
+* adding consumer groups ([36438b7](https://github.com/esmartit/live-stream-counters/commit/36438b7baeda4c9db3738c49f051ca4efab8218f))
+
 ## [1.3.3](https://github.com/esmartit/live-stream-counters/compare/v1.3.2...v1.3.3) (2020-05-18)
 
 
