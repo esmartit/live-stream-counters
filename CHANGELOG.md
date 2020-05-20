@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+# [1.4.0](https://github.com/esmartit/live-stream-counters/compare/v1.3.5...v1.4.0) (2020-05-20)
+
+
+### Features
+
+* liveness readiness and micrometer ([0a97995](https://github.com/esmartit/live-stream-counters/commit/0a97995481e645098996b0b28472b506ae5f0fd2))
+
 ## [1.3.5](https://github.com/esmartit/live-stream-counters/compare/v1.3.4...v1.3.5) (2020-05-20)
 
 
