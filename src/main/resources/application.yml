@@ -37,3 +37,20 @@ spring:
         group: "smartpoke.lsc.device-position.daily-unique-devices"
       daily-unique-devices-detected-count-output:
           destination: "smartpoke-daily-unique-devices-detected-count"
+
+
+
+management:
+#  endpoint:
+#    health:
+#      group:
+#        readiness:
+#          include: readinessState
+  health:
+    probes:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: metrics, health, prometheus
+#        include: "*"

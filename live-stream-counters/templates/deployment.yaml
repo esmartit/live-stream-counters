@@ -11,6 +11,10 @@ spec:
       {{- include "live-stream-counters.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port:  "9000"
       labels:
         {{- include "live-stream-counters.selectorLabels" . | nindent 8 }}
     spec:
@@ -34,16 +38,16 @@ spec:
             - name: http
               containerPort: {{ .Values.service.targetPort }}
               protocol: TCP
-{{/*          livenessProbe:*/}}
-{{/*            httpGet:*/}}
-{{/*              path: /actuator/health*/}}
-{{/*              port: http*/}}
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: http
 {{/*            initialDelaySeconds: 180*/}}
 {{/*            periodSeconds: 20*/}}
-{{/*          readinessProbe:*/}}
-{{/*            httpGet:*/}}
-{{/*              path: /actuator/health*/}}
-{{/*              port: http*/}}
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: http
 {{/*            initialDelaySeconds: 180*/}}
 {{/*            periodSeconds: 10*/}}
           resources:
