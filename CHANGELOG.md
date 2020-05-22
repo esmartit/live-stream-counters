@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+## [1.4.1](https://github.com/esmartit/live-stream-counters/compare/v1.4.0...v1.4.1) (2020-05-22)
+
+
+### Bug Fixes
+
+* yaml ident ([c24c9ae](https://github.com/esmartit/live-stream-counters/commit/c24c9aea21fd393ae30dff9d563e45b4519dbd54))
+
 # [1.4.0](https://github.com/esmartit/live-stream-counters/compare/v1.3.5...v1.4.0) (2020-05-20)
 
 
