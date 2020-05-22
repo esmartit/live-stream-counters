@@ -36,7 +36,7 @@ spring:
         destination: "smartpoke-device-position"
         group: "smartpoke.lsc.device-position.daily-unique-devices"
       daily-unique-devices-detected-count-output:
-          destination: "smartpoke-daily-unique-devices-detected-count"
+        destination: "smartpoke-daily-unique-devices-detected-count"
 
 
 
