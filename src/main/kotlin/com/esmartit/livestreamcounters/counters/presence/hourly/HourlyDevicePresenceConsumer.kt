@@ -1,7 +1,7 @@
 package com.esmartit.livestreamcounters.counters.presence.hourly
 
 import com.esmartit.livestreamcounters.counters.presence.DeviceDeltaPresence
-import com.esmartit.livestreamcounters.counters.presence.HourlyDevicePresenceStat
+import com.esmartit.livestreamcounters.counters.presence.DevicePresenceStat
 import com.esmartit.livestreamcounters.counters.presence.hourly.PresenceStreamsProcessor.Companion.HOURLY_DEVICE_PRESENCE_OUTPUT
 import com.esmartit.livestreamcounters.counters.presence.hourly.PresenceStreamsProcessor.Companion.PRESENCE_INPUT
 import com.esmartit.livestreamcounters.events.DeviceWithPresenceEvent
@@ -37,28 +37,27 @@ class HourlyDevicePresenceConsumer(private val objectMapper: ObjectMapper) {
         name = HOURLY_DEVICE_PRESENCE_STORE,
         valueSerde = "com.esmartit.livestreamcounters.serde.PositionSerde"
     )
-    fun process(input: KStream<String, DeviceWithPresenceEvent>): KStream<String, HourlyDevicePresenceStat> {
+    fun process(input: KStream<String, DeviceWithPresenceEvent>): KStream<String, DevicePresenceStat> {
 
         return input
             .transform(hourlyDevicePresenceTransformer(), HOURLY_DEVICE_PRESENCE_STORE)
             .filter { _, value -> value.isThereAChange() }
             .groupByKey(Grouped.with(Serdes.String(), JsonSerde(objectMapper, DeviceDeltaPresence::class)))
             .aggregate(
-                { HourlyDevicePresenceStat() },
+                { DevicePresenceStat() },
                 { key, delta, stat -> delta.calculateStats(key, stat) },
                 statsKeyStore()
             )
             .toStream()
-            .peek { key, value -> println("$key-$value") }
     }
 
     private fun hourlyDevicePresenceTransformer() =
         TransformerSupplier { HourlyDevicePresenceTransformer() }
 
     private fun statsKeyStore() =
-        Materialized.`as`<String, HourlyDevicePresenceStat, KeyValueStore<Bytes, ByteArray>>("HourlyDevicePresenceStore")
+        Materialized.`as`<String, DevicePresenceStat, KeyValueStore<Bytes, ByteArray>>("HourlyDevicePresenceStore")
             .withKeySerde(Serdes.String())
-            .withValueSerde(JsonSerde(objectMapper, HourlyDevicePresenceStat::class))
+            .withValueSerde(JsonSerde(objectMapper, DevicePresenceStat::class))
 }
 
 interface PresenceStreamsProcessor {

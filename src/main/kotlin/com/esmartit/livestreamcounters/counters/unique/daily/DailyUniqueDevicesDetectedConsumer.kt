@@ -45,7 +45,6 @@ class DailyUniqueDevicesDetectedConsumer {
             .count(Materialized.`as`(DAILY_UNIQUE_DEVICES_DETECTED_COUNT_STORE))
             .toStream()
             .mapValues(ValueMapper<Long, DeviceCount> { DeviceCount(it, Instant.now().epochSecond) })
-            .peek { key, value -> println("$key-$value") }
     }
 
     private fun transformer() = DailyUniqueDevicesDetectedTransformer(DAILY_UNIQUE_DEVICES_DETECTED_COUNT_WINDOW_LENGTH)
