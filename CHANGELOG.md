@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+## [1.5.1](https://github.com/esmartit/live-stream-counters/compare/v1.5.0...v1.5.1) (2020-05-25)
+
+
+### Bug Fixes
+
+* renaming class ([fddda3e](https://github.com/esmartit/live-stream-counters/commit/fddda3eb6031d92af21de87ef79c20dc8caa0923))
+
 # [1.5.0](https://github.com/esmartit/live-stream-counters/compare/v1.4.2...v1.5.0) (2020-05-25)
 
 
