@@ -1,6 +1,8 @@
 package com.esmartit.livestreamcounters.counters.presence.hourly
 
 
+import com.esmartit.livestreamcounters.counters.presence.DeviceDeltaPresence
+import com.esmartit.livestreamcounters.counters.presence.DevicePresence
 import com.esmartit.livestreamcounters.events.DeviceWithPresenceEvent
 import com.esmartit.livestreamcounters.sensor.Position
 import org.apache.kafka.streams.KeyValue
@@ -10,8 +12,8 @@ import org.apache.kafka.streams.state.WindowStore
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 
-class HourlyDevicePresenceTransformer(private val windowStart: Long) :
-    Transformer<String, DeviceWithPresenceEvent, KeyValue<String, HourlyDeviceDeltaPresence>> {
+class HourlyDevicePresenceTransformer :
+    Transformer<String, DeviceWithPresenceEvent, KeyValue<String, DeviceDeltaPresence>> {
 
     private lateinit var stateStore: WindowStore<String, Position>
 
@@ -22,7 +24,7 @@ class HourlyDevicePresenceTransformer(private val windowStart: Long) :
     override fun transform(
         key: String,
         withPosition: DeviceWithPresenceEvent
-    ): KeyValue<String, HourlyDeviceDeltaPresence> {
+    ): KeyValue<String, DeviceDeltaPresence> {
 
         val deviceDetectedEvent = withPosition.deviceDetectedEvent
         val position = withPosition.position
@@ -30,7 +32,7 @@ class HourlyDevicePresenceTransformer(private val windowStart: Long) :
 
         val seenTime = Instant.parse(deviceDetectedEvent.device.seenTime).truncatedTo(ChronoUnit.HOURS)
 
-        val hourlyDevicePresence = HourlyDevicePresence(macAddress, position, seenTime.toString())
+        val hourlyDevicePresence = DevicePresence(macAddress, position, seenTime.toString())
         val timeAndMacAddress = "$seenTime:$macAddress"
         val nowIsh = Instant.now()
         val positionWindow = this.stateStore.fetch(timeAndMacAddress, seenTime, nowIsh)
@@ -41,29 +43,28 @@ class HourlyDevicePresenceTransformer(private val windowStart: Long) :
         } else if (hourlyDevicePresence.position.value > currentPosition.value) {
             return streamDelta(timeAndMacAddress, hourlyDevicePresence, currentPosition)
         }
-        return KeyValue(hourlyDevicePresence.time, HourlyDeviceDeltaPresence(hourlyDevicePresence.time))
+        return KeyValue(hourlyDevicePresence.time, DeviceDeltaPresence(hourlyDevicePresence.time))
     }
 
     private fun streamDelta(
         timeAndMacAddress: String,
-        hourlyDevicePresence: HourlyDevicePresence,
+        devicePresence: DevicePresence,
         currentPosition: Position
-    ): KeyValue<String, HourlyDeviceDeltaPresence> {
-        this.stateStore.put(timeAndMacAddress, hourlyDevicePresence.position)
-        return with(hourlyDevicePresence) {
-            KeyValue(
-                time,
-                HourlyDeviceDeltaPresence(time, increment = position, decrement = currentPosition)
-            )
+    ): KeyValue<String, DeviceDeltaPresence> {
+        this.stateStore.put(timeAndMacAddress, devicePresence.position)
+        return with(devicePresence) {
+            KeyValue(time, DeviceDeltaPresence(time, increment = position, decrement = currentPosition))
         }
     }
 
     private fun streamNewPosition(
         timeAndMacAddress: String,
-        hourlyDevicePresence: HourlyDevicePresence
-    ): KeyValue<String, HourlyDeviceDeltaPresence> {
-        this.stateStore.put(timeAndMacAddress, hourlyDevicePresence.position)
-        return with(hourlyDevicePresence) { KeyValue(time, HourlyDeviceDeltaPresence(time, increment = position)) }
+        devicePresence: DevicePresence
+    ): KeyValue<String, DeviceDeltaPresence> {
+        this.stateStore.put(timeAndMacAddress, devicePresence.position)
+        return with(devicePresence) {
+            KeyValue(time, DeviceDeltaPresence(time, increment = position))
+        }
     }
 
     override fun close() {

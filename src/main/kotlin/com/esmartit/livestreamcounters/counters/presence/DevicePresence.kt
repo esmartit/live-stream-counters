@@ -1,8 +1,8 @@
-package com.esmartit.livestreamcounters.counters.presence.hourly
+package com.esmartit.livestreamcounters.counters.presence
 
 import com.esmartit.livestreamcounters.sensor.Position
 
-data class HourlyDevicePresence(val macAddress: String, val position: Position, val time: String)
+data class DevicePresence(val macAddress: String, val position: Position, val time: String)
 
 data class HourlyDevicePresenceStat(
     val time: String = "",
@@ -11,7 +11,7 @@ data class HourlyDevicePresenceStat(
     val outCount: Long = 0
 )
 
-data class HourlyDeviceDeltaPresence(
+data class DeviceDeltaPresence(
     val time: String,
     val increment: Position = Position.NO_POSITION,
     val decrement: Position = Position.NO_POSITION
