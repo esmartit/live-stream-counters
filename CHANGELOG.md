@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+## [1.4.2](https://github.com/esmartit/live-stream-counters/compare/v1.4.1...v1.4.2) (2020-05-25)
+
+
+### Bug Fixes
+
+* renaming class ([d27ca45](https://github.com/esmartit/live-stream-counters/commit/d27ca45ab3d980d01a245d5eb1a669212f86b0b1))
+
 ## [1.4.1](https://github.com/esmartit/live-stream-counters/compare/v1.4.0...v1.4.1) (2020-05-22)
 
 
