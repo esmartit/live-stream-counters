@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+# [1.5.0](https://github.com/esmartit/live-stream-counters/compare/v1.4.2...v1.5.0) (2020-05-25)
+
+
+### Features
+
+* minute presence ([31f9b5c](https://github.com/esmartit/live-stream-counters/commit/31f9b5c3b96b271ec2676edec37b0dff955c7b32))
+
 ## [1.4.2](https://github.com/esmartit/live-stream-counters/compare/v1.4.1...v1.4.2) (2020-05-25)
 
 
