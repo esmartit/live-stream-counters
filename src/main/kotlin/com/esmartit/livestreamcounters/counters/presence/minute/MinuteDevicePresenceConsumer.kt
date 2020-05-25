@@ -21,6 +21,7 @@ import org.springframework.cloud.stream.annotation.StreamListener
 import org.springframework.cloud.stream.binder.kafka.streams.annotations.KafkaStreamsStateStore
 import org.springframework.cloud.stream.binder.kafka.streams.properties.KafkaStreamsStateStoreProperties
 import org.springframework.messaging.handler.annotation.SendTo
+import java.time.Instant
 
 internal const val MINUTE_DEVICE_PRESENCE_STORE = "minute-device-presence-store"
 internal const val MINUTE_DEVICE_PRESENCE_WINDOW_LENGTH = 3_600L
@@ -50,7 +51,7 @@ class MinuteDevicePresenceConsumer(private val objectMapper: ObjectMapper) {
                 statsKeyStore()
             )
             .toStream()
-            .peek { key, value -> println("MinuteCount:::>>> $key-$value") }
+            .peek { key, value -> println("${Instant.now()}----MinuteCount:::>>> $key-$value") }
     }
 
     private fun minuteDevicePresenceTransformer() =
