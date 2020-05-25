@@ -13,6 +13,14 @@
 
 ### Features
 
+* minute presence ([fcf3cbb](https://github.com/esmartit/live-stream-counters/commit/fcf3cbbbdc02c8231f93246533d7478e09a79c3a))
+* minute presence ([31f9b5c](https://github.com/esmartit/live-stream-counters/commit/31f9b5c3b96b271ec2676edec37b0dff955c7b32))
+
+# [1.5.0](https://github.com/esmartit/live-stream-counters/compare/v1.4.2...v1.5.0) (2020-05-25)
+
+
+### Features
+
 * minute presence ([31f9b5c](https://github.com/esmartit/live-stream-counters/commit/31f9b5c3b96b271ec2676edec37b0dff955c7b32))
 
 # [1.5.0](https://github.com/esmartit/live-stream-counters/compare/v1.4.2...v1.5.0) (2020-05-25)
