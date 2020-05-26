@@ -42,6 +42,11 @@ spring:
         group: "smartpoke.lsc.device-position.minute-presence"
       minute-presence-count-output:
         destination: "smartpoke-minute-presence-count"
+      minute-unique-devices-detected-count-input:
+        destination: "smartpoke-device-position"
+        group: "smartpoke.lsc.device-position.minute-unique-devices"
+      minute-unique-devices-detected-count-output:
+        destination: "smartpoke-minute-unique-devices-detected-count"
 
 
 management:

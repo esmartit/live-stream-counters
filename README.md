@@ -15,6 +15,7 @@ kafka-topics.sh --create --bootstrap-server event-bus-kafka:9092 --replication-f
 kafka-topics.sh --create --bootstrap-server event-bus-kafka:9092 --replication-factor 3 --partitions 16 --topic smartpoke-device-position
 kafka-topics.sh --create --bootstrap-server event-bus-kafka:9092 --replication-factor 3 --partitions 16 --topic smartpoke-daily-unique-devices-detected-count
 kafka-topics.sh --create --bootstrap-server event-bus-kafka:9092 --replication-factor 3 --partitions 16 --topic smartpoke-minute-presence-count
+kafka-topics.sh --create --bootstrap-server event-bus-kafka:9092 --replication-factor 3 --partitions 16 --topic smartpoke-minute-unique-devices-detected-count
 
 kafka-topics.sh --delete --bootstrap-server event-bus-kafka:9092 --topic test
 kafka-topics.sh --describe --bootstrap-server event-bus-kafka:9092 --topic smartpoke-device-presence

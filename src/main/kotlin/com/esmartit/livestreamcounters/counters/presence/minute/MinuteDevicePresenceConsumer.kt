@@ -51,7 +51,6 @@ class MinuteDevicePresenceConsumer(private val objectMapper: ObjectMapper) {
                 statsKeyStore()
             )
             .toStream()
-            .peek { key, value -> println("${Instant.now()}----MinuteCount:::>>> $key-$value") }
     }
 
     private fun minuteDevicePresenceTransformer() =
