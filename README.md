@@ -1,6 +1,6 @@
 # live-stream-counters
 
-Release 1.6.0
+Release 1.6.1
 
 kubectl run test-kafka-client --rm --tty -i --restart='Never' --image docker.io/bitnami/kafka:2.5.0-debian-10-r1 --namespace default --command -- bash
 
