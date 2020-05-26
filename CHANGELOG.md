@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+# [1.6.0](https://github.com/esmartit/live-stream-counters/compare/v1.5.2...v1.6.0) (2020-05-26)
+
+
+### Features
+
+* minute device count ([e841b97](https://github.com/esmartit/live-stream-counters/commit/e841b973b14f90ab006febe07a12d3c799b2deea))
+
 ## [1.5.2](https://github.com/esmartit/live-stream-counters/compare/v1.5.1...v1.5.2) (2020-05-25)
 
 
