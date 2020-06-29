@@ -54,4 +54,4 @@ interface TotalUniqueDevicesRegisteredProcessor {
     }
 }
 
-data class SignUpEvent(val clientMac: String)
+data class SignUpEvent(val username: String)
