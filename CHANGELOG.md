@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+# [1.7.0](https://github.com/esmartit/live-stream-counters/compare/v1.6.1...v1.7.0) (2020-06-29)
+
+
+### Features
+
+* unique registered count ([#9](https://github.com/esmartit/live-stream-counters/issues/9)) ([2b60cc1](https://github.com/esmartit/live-stream-counters/commit/2b60cc1b074f9813a54f9c7baa257fe87f04ef0d))
+
 ## [1.6.1](https://github.com/esmartit/live-stream-counters/compare/v1.6.0...v1.6.1) (2020-05-26)
 
 
