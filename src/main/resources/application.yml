@@ -47,6 +47,11 @@ spring:
         group: "smartpoke.lsc.device-position.minute-unique-devices"
       minute-unique-devices-detected-count-output:
         destination: "smartpoke-minute-unique-devices-detected-count"
+      registered-unique-devices-input:
+        destination: "smartpoke-registered-users"
+        group: "smartpoke.lsc.smartpoke-registered-users"
+      registered-unique-devices-count-output:
+          destination: "smartpoke-registered-users-count"
 
 
 management:
