@@ -16,13 +16,14 @@ kafka-topics.sh --create --bootstrap-server event-bus-kafka:9092 --replication-f
 kafka-topics.sh --create --bootstrap-server event-bus-kafka:9092 --replication-factor 3 --partitions 16 --topic smartpoke-daily-unique-devices-detected-count
 kafka-topics.sh --create --bootstrap-server event-bus-kafka:9092 --replication-factor 3 --partitions 16 --topic smartpoke-minute-presence-count
 kafka-topics.sh --create --bootstrap-server event-bus-kafka:9092 --replication-factor 3 --partitions 16 --topic smartpoke-minute-unique-devices-detected-count
+kafka-topics.sh --create --bootstrap-server event-bus-kafka:9092 --replication-factor 3 --partitions 16 --topic smartpoke-registered-users-count
 
 kafka-topics.sh --delete --bootstrap-server event-bus-kafka:9092 --topic test
 kafka-topics.sh --describe --bootstrap-server event-bus-kafka:9092 --topic smartpoke-device-presence
 
 release 2.0.0
 
-kafka-streams-application-reset.sh --application-id smartpoke-live-stream-counters --bootstrap-servers event-bus-kafka:9092 --input-topics smartpoke-device-presence,smartpoke-registered-users,smartpoke-session-activity,smartpoke-unique-devices-detected-count,smartpoke-hourly-presence-count,smartpoke-sensor-settings,smartpoke-device-position,smartpoke-daily-unique-devices-detected-count
+kafka-streams-application-reset.sh --application-id smartpoke-live-stream-counters --bootstrap-servers event-bus-kafka:9092 --input-topics smartpoke-device-presence,smartpoke-registered-users,smartpoke-session-activity,smartpoke-unique-devices-detected-count,smartpoke-hourly-presence-count,smartpoke-sensor-settings,smartpoke-device-position,smartpoke-daily-unique-devices-detected-count,smartpoke-minute-presence-count,smartpoke-minute-unique-devices-detected-count
 
 
 smartpoke-device-presence,smartpoke-registered-users,smartpoke-session-activity,smartpoke-unique-devices-detected-count,smartpoke-hourly-presence-count,smartpoke-sensor-settings,smartpoke-device-position,smartpoke-daily-unique-devices-detected-count
