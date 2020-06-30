@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+## [1.7.1](https://github.com/esmartit/live-stream-counters/compare/v1.7.0...v1.7.1) (2020-06-30)
+
+
+### Bug Fixes
+
+* changing key to username ([#10](https://github.com/esmartit/live-stream-counters/issues/10)) ([0dd879b](https://github.com/esmartit/live-stream-counters/commit/0dd879b8513ba5200901034c4f0e83a9c2e57fea))
+
 # [1.7.0](https://github.com/esmartit/live-stream-counters/compare/v1.6.1...v1.7.0) (2020-06-29)
 
 
