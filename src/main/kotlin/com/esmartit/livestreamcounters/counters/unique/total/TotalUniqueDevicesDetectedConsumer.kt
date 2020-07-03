@@ -38,6 +38,7 @@ class TotalUniqueDevicesDetectedConsumer {
             .count(Materialized.`as`(UNIQUE_DEVICES_DETECTED_COUNT_STORE))
             .toStream()
             .mapValues(ValueMapper<Long, DeviceCount> { DeviceCount(it, Instant.now().epochSecond) })
+            .peek { key, value -> println("TotalUniqueDevicesDetectedConsumer.process key=$key, value=$value") }
     }
 }
 
