@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+## [2.0.1](https://github.com/esmartit/live-stream-counters/compare/v2.0.0...v2.0.1) (2020-07-03)
+
+
+### Bug Fixes
+
+* adding log to total counter ([#12](https://github.com/esmartit/live-stream-counters/issues/12)) ([40bbbbd](https://github.com/esmartit/live-stream-counters/commit/40bbbbd87212533a5df834132f80199362491d67))
+
 # [2.0.0](https://github.com/esmartit/live-stream-counters/compare/v1.7.1...v2.0.0) (2020-07-03)
 
 
