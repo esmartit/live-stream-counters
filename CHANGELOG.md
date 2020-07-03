@@ -1,5 +1,15 @@
 # Semantic Versioning Changelog
 
+# [2.0.0](https://github.com/esmartit/live-stream-counters/compare/v1.7.1...v2.0.0) (2020-07-03)
+
+
+* Major change ([96bf4be](https://github.com/esmartit/live-stream-counters/commit/96bf4be8f7347ef32d2102f93292f2548f264402))
+
+
+### BREAKING CHANGES
+
+* removing deprecated topics, counters and consumers
+
 ## [1.7.1](https://github.com/esmartit/live-stream-counters/compare/v1.7.0...v1.7.1) (2020-06-30)
 
 
