@@ -22,31 +22,11 @@ spring:
         destination: "smartpoke-sensor-settings"
         group: "smartpoke.lsc.sensor-settings"
         consumer.materializedAs: sensor-settings-store
-      hourly-presence-count-input:
-        destination: "smartpoke-device-position"
-        group: "smartpoke.lsc.device-position.hourly-presence"
-      hourly-presence-count-output:
-        destination: "smartpoke-hourly-presence-count"
       unique-devices-detected-count-input:
         destination: "smartpoke-device-position"
         group: "smartpoke.lsc.device-position.unique-devices"
       unique-devices-detected-count-output:
         destination: "smartpoke-unique-devices-detected-count"
-      daily-unique-devices-detected-count-input:
-        destination: "smartpoke-device-position"
-        group: "smartpoke.lsc.device-position.daily-unique-devices"
-      daily-unique-devices-detected-count-output:
-        destination: "smartpoke-daily-unique-devices-detected-count"
-      minute-presence-count-input:
-        destination: "smartpoke-device-position"
-        group: "smartpoke.lsc.device-position.minute-presence"
-      minute-presence-count-output:
-        destination: "smartpoke-minute-presence-count"
-      minute-unique-devices-detected-count-input:
-        destination: "smartpoke-device-position"
-        group: "smartpoke.lsc.device-position.minute-unique-devices"
-      minute-unique-devices-detected-count-output:
-        destination: "smartpoke-minute-unique-devices-detected-count"
       registered-unique-devices-input:
         destination: "smartpoke-registered-users"
         group: "smartpoke.lsc.smartpoke-registered-users"

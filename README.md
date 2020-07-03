@@ -23,7 +23,10 @@ kafka-topics.sh --describe --bootstrap-server event-bus-kafka:9092 --topic smart
 
 release 2.0.0
 
-kafka-streams-application-reset.sh --application-id smartpoke-live-stream-counters --bootstrap-servers event-bus-kafka:9092 --input-topics smartpoke-device-presence,smartpoke-registered-users,smartpoke-session-activity,smartpoke-unique-devices-detected-count,smartpoke-hourly-presence-count,smartpoke-sensor-settings,smartpoke-device-position,smartpoke-daily-unique-devices-detected-count,smartpoke-minute-presence-count,smartpoke-minute-unique-devices-detected-count
+kafka-streams-application-reset.sh --application-id smartpoke-live-stream-counters --bootstrap-servers event-bus-kafka:9092 --input-topics smartpoke-daily-unique-devices-detected-count,smartpoke-daily-unique-devices-detected-count-input,smartpoke-device-position,smartpoke-device-presence,smartpoke-hourly-presence-count,smartpoke-live-stream-counters-daily-unique-devices-detected-count-store-changelog,smartpoke-live-stream-counters-daily-unique-devices-detected-count-store-repartition,smartpoke-live-stream-counters-daily-unique-devices-detected-store-changelog,smartpoke-live-stream-counters-minute-unique-devices-detected-count-store-changelog,smartpoke-live-stream-counters-minute-unique-devices-detected-count-store-repartition,smartpoke-live-stream-counters-minute-unique-devices-detected-store-changelog,smartpoke-minute-presence-count,smartpoke-minute-unique-devices-detected-count,smartpoke-registered-users,smartpoke-registered-users-count,smartpoke-sensor-settings,smartpoke-session-activity,smartpoke-unique-devices-detected-count
 
 
-smartpoke-device-presence,smartpoke-registered-users,smartpoke-session-activity,smartpoke-unique-devices-detected-count,smartpoke-hourly-presence-count,smartpoke-sensor-settings,smartpoke-device-position,smartpoke-daily-unique-devices-detected-count
+kafka-topics.sh --delete --bootstrap-server event-bus-kafka:9092 --topic smartpoke-hourly-presence-count
+kafka-topics.sh --delete --bootstrap-server event-bus-kafka:9092 --topic smartpoke-minute-presence-count
+kafka-topics.sh --delete --bootstrap-server event-bus-kafka:9092 --topic smartpoke-daily-unique-devices-detected-count
+kafka-topics.sh --delete --bootstrap-server event-bus-kafka:9092 --topic smartpoke-minute-unique-devices-detected-count
