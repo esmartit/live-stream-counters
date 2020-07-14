@@ -9,7 +9,8 @@ data class DeviceDetectedEvent(
     val sensorName: String,
     val spotId: String,
     val device: DeviceSeen,
-    val apFloors: List<String?>
+    val apFloors: List<String?>,
+    val countryLocation: CountryLocation? = null
 )
 
 data class DeviceSeen(
@@ -32,6 +33,8 @@ data class DeviceLocation(
     val x: List<String?>,
     val y: List<String?>
 )
+
+data class CountryLocation(val countryId: String, val stateId: String, val cityId: String)
 
 data class DeviceWithPresenceEvent(val deviceDetectedEvent: DeviceDetectedEvent, val position: Position) {
 
