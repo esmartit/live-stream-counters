@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+# [2.1.0](https://github.com/esmartit/live-stream-counters/compare/v2.0.1...v2.1.0) (2020-07-14)
+
+
+### Features
+
+* country location ([#13](https://github.com/esmartit/live-stream-counters/issues/13)) ([a4a4d5e](https://github.com/esmartit/live-stream-counters/commit/a4a4d5e1c623897fe8f0871f2130a8d80915da47))
+
 ## [2.0.1](https://github.com/esmartit/live-stream-counters/compare/v2.0.0...v2.0.1) (2020-07-03)
 
 
