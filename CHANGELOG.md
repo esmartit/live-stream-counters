@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+## [2.1.1](https://github.com/esmartit/live-stream-counters/compare/v2.1.0...v2.1.1) (2020-08-24)
+
+
+### Bug Fixes
+
+* adding missing zipcode ([90a3e25](https://github.com/esmartit/live-stream-counters/commit/90a3e256aa659956c010ac51f00d6f24e1c44540))
+
 # [2.1.0](https://github.com/esmartit/live-stream-counters/compare/v2.0.1...v2.1.0) (2020-07-14)
 
 
