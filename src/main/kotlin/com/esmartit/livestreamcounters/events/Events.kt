@@ -34,7 +34,7 @@ data class DeviceLocation(
     val y: List<String?>
 )
 
-data class CountryLocation(val countryId: String, val stateId: String, val cityId: String)
+data class CountryLocation(val countryId: String, val stateId: String, val cityId: String, val zipCode: String = "")
 
 data class DeviceWithPresenceEvent(val deviceDetectedEvent: DeviceDetectedEvent, val position: Position) {
 
